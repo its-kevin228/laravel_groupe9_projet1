@@ -1,0 +1,200 @@
+name: 'Admin — Exclusion de membres'
+description: ''
+endpoints:
+  -
+    custom: []
+    httpMethods:
+      - GET
+    uri: api/admin/membres/exclus
+    metadata:
+      custom: []
+      groupName: 'Admin — Exclusion de membres'
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Liste des membres exclus'
+      description: ''
+      authenticated: true
+      deprecated: false
+    headers:
+      Authorization: 'Bearer {VOTRE_TOKEN_SANCTUM}'
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        custom: []
+        status: 200
+        content: |-
+          [{
+            "id": 3, "nom_complet": "Alice Dupont", "phone": "+22890000000",
+            "exclu_at": "2026-04-14", "raison_exclusion": "Non-paiement répété"
+          }]
+        headers: []
+        description: ''
+    responseFields: []
+    auth:
+      - headers
+      - Authorization
+      - 'Bearer 6g43cv8PD1aE5beadkZfhV6'
+    controller: null
+    method: null
+    route: null
+  -
+    custom: []
+    httpMethods:
+      - POST
+    uri: 'api/admin/membres/{user_id}/exclure'
+    metadata:
+      custom: []
+      groupName: 'Admin — Exclusion de membres'
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Exclure un membre'
+      description: |-
+        Bloque l'accès d'un membre à la plateforme.
+        Un membre exclu ne peut plus effectuer aucune action.
+      authenticated: true
+      deprecated: false
+    headers:
+      Authorization: 'Bearer {VOTRE_TOKEN_SANCTUM}'
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      user_id:
+        custom: []
+        name: user_id
+        description: 'The ID of the user.'
+        required: true
+        example: 16
+        type: integer
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+      user:
+        custom: []
+        name: user
+        description: 'ID du membre à exclure.'
+        required: true
+        example: 3
+        type: integer
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        deprecated: false
+    cleanUrlParameters:
+      user_id: 16
+      user: 3
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters:
+      raison:
+        custom: []
+        name: raison
+        description: "Raison de l'exclusion."
+        required: false
+        example: 'Non-paiement répété'
+        type: string
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: true
+        deprecated: false
+    cleanBodyParameters:
+      raison: 'Non-paiement répété'
+    fileParameters: []
+    responses:
+      -
+        custom: []
+        status: 200
+        content: |-
+          {
+            "message": "Alice Dupont a été exclu(e) avec succès.",
+            "membre": { "id": 3, "nom_complet": "Alice Dupont", "exclu_at": "2026-04-14" }
+          }
+        headers: []
+        description: ''
+    responseFields: []
+    auth:
+      - headers
+      - Authorization
+      - 'Bearer 6g43cv8PD1aE5beadkZfhV6'
+    controller: null
+    method: null
+    route: null
+  -
+    custom: []
+    httpMethods:
+      - POST
+    uri: 'api/admin/membres/{user_id}/reintegrer'
+    metadata:
+      custom: []
+      groupName: 'Admin — Exclusion de membres'
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Réintégrer un membre exclu'
+      description: "Restaure l'accès d'un membre précédemment exclu."
+      authenticated: true
+      deprecated: false
+    headers:
+      Authorization: 'Bearer {VOTRE_TOKEN_SANCTUM}'
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      user_id:
+        custom: []
+        name: user_id
+        description: 'The ID of the user.'
+        required: true
+        example: 16
+        type: integer
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+      user:
+        custom: []
+        name: user
+        description: 'ID du membre à réintégrer.'
+        required: true
+        example: 3
+        type: integer
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        deprecated: false
+    cleanUrlParameters:
+      user_id: 16
+      user: 3
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        custom: []
+        status: 200
+        content: |-
+          {
+            "message": "Alice Dupont a été réintégré(e) avec succès.",
+            "membre": { "id": 3, "nom_complet": "Alice Dupont", "exclu_at": null }
+          }
+        headers: []
+        description: ''
+    responseFields: []
+    auth:
+      - headers
+      - Authorization
+      - 'Bearer 6g43cv8PD1aE5beadkZfhV6'
+    controller: null
+    method: null
+    route: null

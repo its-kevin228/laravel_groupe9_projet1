@@ -1,0 +1,270 @@
+name: 'Admin — Types de Tontine par Membre'
+description: ''
+endpoints:
+  -
+    custom: []
+    httpMethods:
+      - GET
+    uri: 'api/admin/membres/{user_id}/tontine-types'
+    metadata:
+      custom: []
+      groupName: 'Admin — Types de Tontine par Membre'
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: "Types d'un membre"
+      description: 'Retourne tous les types de tontine auxquels un membre est inscrit.'
+      authenticated: true
+      deprecated: false
+    headers:
+      Authorization: 'Bearer {VOTRE_TOKEN_SANCTUM}'
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      user_id:
+        custom: []
+        name: user_id
+        description: 'The ID of the user.'
+        required: true
+        example: 16
+        type: integer
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+      user:
+        custom: []
+        name: user
+        description: 'ID du membre.'
+        required: true
+        example: 1
+        type: integer
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        deprecated: false
+    cleanUrlParameters:
+      user_id: 16
+      user: 1
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        custom: []
+        status: 200
+        content: |-
+          [{
+            "id": 1, "nom": "Bronze", "montant": "5000.00", "devise": "FCFA",
+            "pivot": { "date_adhesion": "2026-01-15", "ajoute_par": 2 }
+          }]
+        headers: []
+        description: ''
+    responseFields: []
+    auth:
+      - headers
+      - Authorization
+      - 'Bearer 6g43cv8PD1aE5beadkZfhV6'
+    controller: null
+    method: null
+    route: null
+  -
+    custom: []
+    httpMethods:
+      - POST
+    uri: 'api/admin/membres/{user_id}/tontine-types'
+    metadata:
+      custom: []
+      groupName: 'Admin — Types de Tontine par Membre'
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Assigner un type à un membre'
+      description: 'Inscrit un membre à un ou plusieurs types de tontine.'
+      authenticated: true
+      deprecated: false
+    headers:
+      Authorization: 'Bearer {VOTRE_TOKEN_SANCTUM}'
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      user_id:
+        custom: []
+        name: user_id
+        description: 'The ID of the user.'
+        required: true
+        example: 16
+        type: integer
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+      user:
+        custom: []
+        name: user
+        description: 'ID du membre.'
+        required: true
+        example: 1
+        type: integer
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        deprecated: false
+    cleanUrlParameters:
+      user_id: 16
+      user: 1
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters:
+      tontine_type_ids:
+        custom: []
+        name: tontine_type_ids
+        description: 'Liste des IDs de types à assigner.'
+        required: true
+        example:
+          - 1
+          - 2
+        type: 'string[]'
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        deprecated: false
+      date_adhesion:
+        custom: []
+        name: date_adhesion
+        description: "Date d'adhésion (YYYY-MM-DD)."
+        required: false
+        example: '2026-01-15'
+        type: string
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: true
+        deprecated: false
+      'tontine_type_ids[]':
+        custom: []
+        name: 'tontine_type_ids[]'
+        description: "ID d'un type de tontine."
+        required: true
+        example: 1
+        type: integer
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        deprecated: false
+    cleanBodyParameters:
+      tontine_type_ids:
+        - 1
+        - 2
+      date_adhesion: '2026-01-15'
+      'tontine_type_ids[]': 1
+    fileParameters: []
+    responses:
+      -
+        custom: []
+        status: 200
+        content: |-
+          {
+            "message": "Types assignés avec succès.",
+            "types": [{ "id": 1, "nom": "Bronze" }, { "id": 2, "nom": "Silver" }]
+          }
+        headers: []
+        description: ''
+    responseFields: []
+    auth:
+      - headers
+      - Authorization
+      - 'Bearer 6g43cv8PD1aE5beadkZfhV6'
+    controller: null
+    method: null
+    route: null
+  -
+    custom: []
+    httpMethods:
+      - DELETE
+    uri: 'api/admin/membres/{user_id}/tontine-types/{tontineType_id}'
+    metadata:
+      custom: []
+      groupName: 'Admin — Types de Tontine par Membre'
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: "Retirer un type d'un membre"
+      description: "Supprime l'inscription d'un membre à un type de tontine spécifique."
+      authenticated: true
+      deprecated: false
+    headers:
+      Authorization: 'Bearer {VOTRE_TOKEN_SANCTUM}'
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      user_id:
+        custom: []
+        name: user_id
+        description: 'The ID of the user.'
+        required: true
+        example: 16
+        type: integer
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+      tontineType_id:
+        custom: []
+        name: tontineType_id
+        description: 'The ID of the tontineType.'
+        required: true
+        example: 16
+        type: integer
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+      user:
+        custom: []
+        name: user
+        description: 'ID du membre.'
+        required: true
+        example: 1
+        type: integer
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        deprecated: false
+      tontineType:
+        custom: []
+        name: tontineType
+        description: 'ID du type à retirer.'
+        required: true
+        example: 1
+        type: integer
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        deprecated: false
+    cleanUrlParameters:
+      user_id: 16
+      tontineType_id: 16
+      user: 1
+      tontineType: 1
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        custom: []
+        status: 200
+        content: '{ "message": "Type retiré avec succès." }'
+        headers: []
+        description: ''
+    responseFields: []
+    auth:
+      - headers
+      - Authorization
+      - 'Bearer 6g43cv8PD1aE5beadkZfhV6'
+    controller: null
+    method: null
+    route: null

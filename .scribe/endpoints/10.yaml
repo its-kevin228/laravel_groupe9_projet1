@@ -1,0 +1,411 @@
+name: 'Admin — Notifications'
+description: ''
+endpoints:
+  -
+    custom: []
+    httpMethods:
+      - POST
+    uri: 'api/admin/tontines/{tontine_id}/cycles/{cycle_id}/notifier/rappel'
+    metadata:
+      custom: []
+      groupName: 'Admin — Notifications'
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Envoyer un rappel de paiement'
+      description: "Dispatche un rappel à tous les membres n'ayant pas encore payé le cycle actif."
+      authenticated: true
+      deprecated: false
+    headers:
+      Authorization: 'Bearer {VOTRE_TOKEN_SANCTUM}'
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      tontine_id:
+        custom: []
+        name: tontine_id
+        description: 'The ID of the tontine.'
+        required: true
+        example: 16
+        type: integer
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+      cycle_id:
+        custom: []
+        name: cycle_id
+        description: 'The ID of the cycle.'
+        required: true
+        example: 16
+        type: integer
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+      tontine:
+        custom: []
+        name: tontine
+        description: 'ID de la tontine.'
+        required: true
+        example: 1
+        type: integer
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        deprecated: false
+      cycle:
+        custom: []
+        name: cycle
+        description: 'ID du cycle.'
+        required: true
+        example: 1
+        type: integer
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        deprecated: false
+    cleanUrlParameters:
+      tontine_id: 16
+      cycle_id: 16
+      tontine: 1
+      cycle: 1
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        custom: []
+        status: 200
+        content: '{ "message": "Rappel de paiement envoyé en queue pour le cycle 2." }'
+        headers: []
+        description: ''
+    responseFields: []
+    auth:
+      - headers
+      - Authorization
+      - 'Bearer 6g43cv8PD1aE5beadkZfhV6'
+    controller: null
+    method: null
+    route: null
+  -
+    custom: []
+    httpMethods:
+      - POST
+    uri: 'api/admin/tontines/{tontine_id}/cycles/{cycle_id}/notifier/retard'
+    metadata:
+      custom: []
+      groupName: 'Admin — Notifications'
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Envoyer une alerte de retard'
+      description: 'Dispatche une alerte aux membres en retard de paiement.'
+      authenticated: true
+      deprecated: false
+    headers:
+      Authorization: 'Bearer {VOTRE_TOKEN_SANCTUM}'
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      tontine_id:
+        custom: []
+        name: tontine_id
+        description: 'The ID of the tontine.'
+        required: true
+        example: 16
+        type: integer
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+      cycle_id:
+        custom: []
+        name: cycle_id
+        description: 'The ID of the cycle.'
+        required: true
+        example: 16
+        type: integer
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+      tontine:
+        custom: []
+        name: tontine
+        description: 'ID de la tontine.'
+        required: true
+        example: 1
+        type: integer
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        deprecated: false
+      cycle:
+        custom: []
+        name: cycle
+        description: 'ID du cycle.'
+        required: true
+        example: 1
+        type: integer
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        deprecated: false
+    cleanUrlParameters:
+      tontine_id: 16
+      cycle_id: 16
+      tontine: 1
+      cycle: 1
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        custom: []
+        status: 200
+        content: '{ "message": "Alerte retard envoyée en queue pour le cycle 2." }'
+        headers: []
+        description: ''
+    responseFields: []
+    auth:
+      - headers
+      - Authorization
+      - 'Bearer 6g43cv8PD1aE5beadkZfhV6'
+    controller: null
+    method: null
+    route: null
+  -
+    custom: []
+    httpMethods:
+      - POST
+    uri: 'api/admin/tontines/{tontine_id}/cycles/{cycle_id}/notifier/beneficiaire'
+    metadata:
+      custom: []
+      groupName: 'Admin — Notifications'
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Notifier le bénéficiaire'
+      description: 'Envoie une notification au bénéficiaire du cycle actif.'
+      authenticated: true
+      deprecated: false
+    headers:
+      Authorization: 'Bearer {VOTRE_TOKEN_SANCTUM}'
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      tontine_id:
+        custom: []
+        name: tontine_id
+        description: 'The ID of the tontine.'
+        required: true
+        example: 16
+        type: integer
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+      cycle_id:
+        custom: []
+        name: cycle_id
+        description: 'The ID of the cycle.'
+        required: true
+        example: 16
+        type: integer
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+      tontine:
+        custom: []
+        name: tontine
+        description: 'ID de la tontine.'
+        required: true
+        example: 1
+        type: integer
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        deprecated: false
+      cycle:
+        custom: []
+        name: cycle
+        description: 'ID du cycle.'
+        required: true
+        example: 1
+        type: integer
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        deprecated: false
+    cleanUrlParameters:
+      tontine_id: 16
+      cycle_id: 16
+      tontine: 1
+      cycle: 1
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        custom: []
+        status: 200
+        content: '{ "message": "Notification envoyée au bénéficiaire Alice Dupont." }'
+        headers: []
+        description: ''
+    responseFields: []
+    auth:
+      - headers
+      - Authorization
+      - 'Bearer 6g43cv8PD1aE5beadkZfhV6'
+    controller: null
+    method: null
+    route: null
+  -
+    custom: []
+    httpMethods:
+      - GET
+    uri: api/notifications
+    metadata:
+      custom: []
+      groupName: 'Admin — Notifications'
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Notifications reçues par le membre connecté'
+      description: 'Retourne les notifications en base de données du membre authentifié.'
+      authenticated: true
+      deprecated: false
+    headers:
+      Authorization: 'Bearer {VOTRE_TOKEN_SANCTUM}'
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        custom: []
+        status: 200
+        content: |-
+          {
+            "non_lues": 2,
+            "notifications": [
+              { "id": "uuid", "type": "rappel_paiement", "message": "...", "created_at": "..." }
+            ]
+          }
+        headers: []
+        description: ''
+    responseFields: []
+    auth:
+      - headers
+      - Authorization
+      - 'Bearer 6g43cv8PD1aE5beadkZfhV6'
+    controller: null
+    method: null
+    route: null
+  -
+    custom: []
+    httpMethods:
+      - PATCH
+    uri: 'api/notifications/{id}/lue'
+    metadata:
+      custom: []
+      groupName: 'Admin — Notifications'
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Marquer une notification comme lue'
+      description: ''
+      authenticated: true
+      deprecated: false
+    headers:
+      Authorization: 'Bearer {VOTRE_TOKEN_SANCTUM}'
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      id:
+        custom: []
+        name: id
+        description: 'UUID de la notification.'
+        required: true
+        example: 550e8400-e29b-41d4-a716-446655440000
+        type: string
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        deprecated: false
+    cleanUrlParameters:
+      id: 550e8400-e29b-41d4-a716-446655440000
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        custom: []
+        status: 200
+        content: '{ "message": "Notification marquée comme lue." }'
+        headers: []
+        description: ''
+    responseFields: []
+    auth:
+      - headers
+      - Authorization
+      - 'Bearer 6g43cv8PD1aE5beadkZfhV6'
+    controller: null
+    method: null
+    route: null
+  -
+    custom: []
+    httpMethods:
+      - PATCH
+    uri: api/notifications/toutes-lues
+    metadata:
+      custom: []
+      groupName: 'Admin — Notifications'
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Marquer toutes les notifications comme lues'
+      description: ''
+      authenticated: true
+      deprecated: false
+    headers:
+      Authorization: 'Bearer {VOTRE_TOKEN_SANCTUM}'
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        custom: []
+        status: 200
+        content: '{ "message": "Toutes les notifications ont été marquées comme lues." }'
+        headers: []
+        description: ''
+    responseFields: []
+    auth:
+      - headers
+      - Authorization
+      - 'Bearer 6g43cv8PD1aE5beadkZfhV6'
+    controller: null
+    method: null
+    route: null

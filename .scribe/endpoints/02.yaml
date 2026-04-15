@@ -1,0 +1,172 @@
+name: 'Invitations — Réponse'
+description: |-
+
+  Accepter ou refuser une invitation à une tontine via le token reçu par email.
+endpoints:
+  -
+    custom: []
+    httpMethods:
+      - GET
+    uri: 'api/invitations/{token}'
+    metadata:
+      custom: []
+      groupName: 'Invitations — Réponse'
+      groupDescription: |-
+
+        Accepter ou refuser une invitation à une tontine via le token reçu par email.
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Consulter une invitation'
+      description: "Retourne les détails d'une invitation à partir de son token."
+      authenticated: false
+      deprecated: false
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      token:
+        custom: []
+        name: token
+        description: "Token de l'invitation."
+        required: true
+        example: abc123xyz
+        type: string
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        deprecated: false
+    cleanUrlParameters:
+      token: abc123xyz
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        custom: []
+        status: 200
+        content: |-
+          {
+            "tontine": { "nom": "Tontine Solidarité", "montant_cotisation": "5000.00" },
+            "invite_par": "Admin Test",
+            "email": "alice@example.com",
+            "statut": "en_attente",
+            "expires_at": "2026-04-16T10:00:00",
+            "message": "Rejoins notre groupe !"
+          }
+        headers: []
+        description: ''
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+  -
+    custom: []
+    httpMethods:
+      - POST
+    uri: 'api/invitations/{token}/accepter'
+    metadata:
+      custom: []
+      groupName: 'Invitations — Réponse'
+      groupDescription: |-
+
+        Accepter ou refuser une invitation à une tontine via le token reçu par email.
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Accepter une invitation'
+      description: |-
+        Accepte l'invitation. Si l'utilisateur n'existe pas encore,
+        il doit s'inscrire d'abord puis rappeler cet endpoint avec son token auth.
+      authenticated: false
+      deprecated: false
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      token:
+        custom: []
+        name: token
+        description: "Token de l'invitation."
+        required: true
+        example: abc123xyz
+        type: string
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        deprecated: false
+    cleanUrlParameters:
+      token: abc123xyz
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        custom: []
+        status: 200
+        content: |-
+          {
+            "message": "Invitation acceptée. Vous êtes maintenant membre de Tontine Solidarité.",
+            "tontine": { "id": 1, "nom": "Tontine Solidarité" }
+          }
+        headers: []
+        description: ''
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+  -
+    custom: []
+    httpMethods:
+      - POST
+    uri: 'api/invitations/{token}/refuser'
+    metadata:
+      custom: []
+      groupName: 'Invitations — Réponse'
+      groupDescription: |-
+
+        Accepter ou refuser une invitation à une tontine via le token reçu par email.
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Refuser une invitation'
+      description: ''
+      authenticated: false
+      deprecated: false
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      token:
+        custom: []
+        name: token
+        description: "Token de l'invitation."
+        required: true
+        example: abc123xyz
+        type: string
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        deprecated: false
+    cleanUrlParameters:
+      token: abc123xyz
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        custom: []
+        status: 200
+        content: '{ "message": "Invitation refusée." }'
+        headers: []
+        description: ''
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null

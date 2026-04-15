@@ -1,0 +1,376 @@
+name: 'Admin — Paiements'
+description: ''
+endpoints:
+  -
+    custom: []
+    httpMethods:
+      - GET
+    uri: 'api/admin/tontines/{tontine_id}/cycles/{cycle_id}/paiements'
+    metadata:
+      custom: []
+      groupName: 'Admin — Paiements'
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: "Liste des paiements d'un cycle"
+      description: |-
+        Retourne tous les paiements enregistrés pour un cycle,
+        ainsi que les membres n'ayant pas encore payé (en retard).
+      authenticated: true
+      deprecated: false
+    headers:
+      Authorization: 'Bearer {VOTRE_TOKEN_SANCTUM}'
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      tontine_id:
+        custom: []
+        name: tontine_id
+        description: 'The ID of the tontine.'
+        required: true
+        example: 16
+        type: integer
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+      cycle_id:
+        custom: []
+        name: cycle_id
+        description: 'The ID of the cycle.'
+        required: true
+        example: 16
+        type: integer
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+      tontine:
+        custom: []
+        name: tontine
+        description: 'ID de la tontine.'
+        required: true
+        example: 1
+        type: integer
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        deprecated: false
+      cycle:
+        custom: []
+        name: cycle
+        description: 'ID du cycle.'
+        required: true
+        example: 1
+        type: integer
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        deprecated: false
+    cleanUrlParameters:
+      tontine_id: 16
+      cycle_id: 16
+      tontine: 1
+      cycle: 1
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        custom: []
+        status: 200
+        content: |-
+          {
+            "cycle": { "id": 1, "numero_cycle": 1, "statut": "ouvert" },
+            "paiements": [
+              { "id": 1, "montant": "5000.00", "statut": "paye", "paid_at": "2026-01-10",
+                "membre": { "id": 3, "first_name": "Alice", "last_name": "Dupont" } }
+            ],
+            "en_retard": [
+              { "id": 5, "first_name": "Bob", "last_name": "Martin", "ordre_passage": 2 }
+            ],
+            "resume": { "total_membres": 4, "ont_paye": 1, "en_retard": 3 }
+          }
+        headers: []
+        description: ''
+    responseFields: []
+    auth:
+      - headers
+      - Authorization
+      - 'Bearer 6g43cv8PD1aE5beadkZfhV6'
+    controller: null
+    method: null
+    route: null
+  -
+    custom: []
+    httpMethods:
+      - POST
+    uri: 'api/admin/tontines/{tontine_id}/cycles/{cycle_id}/paiements'
+    metadata:
+      custom: []
+      groupName: 'Admin — Paiements'
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Enregistrer un paiement'
+      description: |-
+        Enregistre le paiement d'un membre pour un cycle donné.
+        ❗ Un membre ne peut payer qu'une seule fois par cycle (doublon bloqué).
+        Le statut est automatiquement calculé selon la date de paiement.
+      authenticated: true
+      deprecated: false
+    headers:
+      Authorization: 'Bearer {VOTRE_TOKEN_SANCTUM}'
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      tontine_id:
+        custom: []
+        name: tontine_id
+        description: 'The ID of the tontine.'
+        required: true
+        example: 16
+        type: integer
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+      cycle_id:
+        custom: []
+        name: cycle_id
+        description: 'The ID of the cycle.'
+        required: true
+        example: 16
+        type: integer
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+      tontine:
+        custom: []
+        name: tontine
+        description: 'ID de la tontine.'
+        required: true
+        example: 1
+        type: integer
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        deprecated: false
+      cycle:
+        custom: []
+        name: cycle
+        description: 'ID du cycle.'
+        required: true
+        example: 1
+        type: integer
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        deprecated: false
+    cleanUrlParameters:
+      tontine_id: 16
+      cycle_id: 16
+      tontine: 1
+      cycle: 1
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters:
+      user_id:
+        custom: []
+        name: user_id
+        description: 'ID du membre.'
+        required: true
+        example: 3
+        type: integer
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        deprecated: false
+      montant:
+        custom: []
+        name: montant
+        description: 'Montant payé.'
+        required: true
+        example: 5000.0
+        type: number
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        deprecated: false
+      paid_at:
+        custom: []
+        name: paid_at
+        description: "Date du paiement (YYYY-MM-DD, défaut: aujourd'hui)."
+        required: false
+        example: '2026-01-10'
+        type: string
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: true
+        deprecated: false
+      note:
+        custom: []
+        name: note
+        description: 'Note optionnelle.'
+        required: false
+        example: 'Paiement en espèces'
+        type: string
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: true
+        deprecated: false
+    cleanBodyParameters:
+      user_id: 3
+      montant: 5000.0
+      paid_at: '2026-01-10'
+      note: 'Paiement en espèces'
+    fileParameters: []
+    responses:
+      -
+        custom: []
+        status: 201
+        content: |-
+          {
+            "id": 1, "montant": "5000.00", "statut": "paye", "paid_at": "2026-01-10",
+            "membre": { "id": 3, "first_name": "Alice", "last_name": "Dupont" }
+          }
+        headers: []
+        description: ''
+      -
+        custom: []
+        status: 422
+        content: |-
+          {
+            "message": "Ce membre a déjà payé pour ce cycle."
+          }
+        headers: []
+        description: 'Double paiement'
+    responseFields: []
+    auth:
+      - headers
+      - Authorization
+      - 'Bearer 6g43cv8PD1aE5beadkZfhV6'
+    controller: null
+    method: null
+    route: null
+  -
+    custom: []
+    httpMethods:
+      - GET
+    uri: 'api/admin/tontines/{tontine_id}/cycles/{cycle_id}/paiements/membres/{user_id}'
+    metadata:
+      custom: []
+      groupName: 'Admin — Paiements'
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: "Statut de paiement d'un membre pour un cycle"
+      description: 'Vérifie si un membre a payé ou est en retard pour un cycle donné.'
+      authenticated: true
+      deprecated: false
+    headers:
+      Authorization: 'Bearer {VOTRE_TOKEN_SANCTUM}'
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      tontine_id:
+        custom: []
+        name: tontine_id
+        description: 'The ID of the tontine.'
+        required: true
+        example: 16
+        type: integer
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+      cycle_id:
+        custom: []
+        name: cycle_id
+        description: 'The ID of the cycle.'
+        required: true
+        example: 16
+        type: integer
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+      user_id:
+        custom: []
+        name: user_id
+        description: 'The ID of the user.'
+        required: true
+        example: 16
+        type: integer
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+      tontine:
+        custom: []
+        name: tontine
+        description: 'ID de la tontine.'
+        required: true
+        example: 1
+        type: integer
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        deprecated: false
+      cycle:
+        custom: []
+        name: cycle
+        description: 'ID du cycle.'
+        required: true
+        example: 1
+        type: integer
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        deprecated: false
+      user:
+        custom: []
+        name: user
+        description: 'ID du membre.'
+        required: true
+        example: 3
+        type: integer
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        deprecated: false
+    cleanUrlParameters:
+      tontine_id: 16
+      cycle_id: 16
+      user_id: 16
+      tontine: 1
+      cycle: 1
+      user: 3
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        custom: []
+        status: 200
+        content: |-
+          {
+            "membre": { "id": 3, "first_name": "Alice", "last_name": "Dupont" },
+            "statut": "paye",
+            "paiement": { "id": 1, "montant": "5000.00", "paid_at": "2026-01-10" }
+          }
+        headers: []
+        description: ''
+    responseFields: []
+    auth:
+      - headers
+      - Authorization
+      - 'Bearer 6g43cv8PD1aE5beadkZfhV6'
+    controller: null
+    method: null
+    route: null

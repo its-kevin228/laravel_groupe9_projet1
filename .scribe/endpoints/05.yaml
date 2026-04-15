@@ -1,0 +1,62 @@
+name: 'Admin — Membres'
+description: ''
+endpoints:
+  -
+    custom: []
+    httpMethods:
+      - GET
+    uri: api/admin/membres
+    metadata:
+      custom: []
+      groupName: 'Admin — Membres'
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Liste des membres'
+      description: |-
+        Retourne la liste paginée des membres avec leur statut de paiement
+        et le montant total cotisé estimé.
+      authenticated: true
+      deprecated: false
+    headers:
+      Authorization: 'Bearer {VOTRE_TOKEN_SANCTUM}'
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        custom: []
+        status: 200
+        content: |-
+          {
+            "data": [
+              {
+                "nom_complet": "Jean Dupont",
+                "phone": "+33600000000",
+                "email": "jean@example.com",
+                "statut_paiement": "payé",
+                "type_tontine": "Tontine Mensuelle",
+                "montant_total_cotise": "150.00",
+                "ordre_passage": 1
+              }
+            ],
+            "current_page": 1,
+            "per_page": 15,
+            "total": 1
+          }
+        headers: []
+        description: ''
+    responseFields: []
+    auth:
+      - headers
+      - Authorization
+      - 'Bearer 6g43cv8PD1aE5beadkZfhV6'
+    controller: null
+    method: null
+    route: null
