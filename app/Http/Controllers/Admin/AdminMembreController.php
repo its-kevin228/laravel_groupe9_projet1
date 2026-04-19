@@ -40,17 +40,20 @@ class AdminMembreController extends Controller
     public function index(Request $request): JsonResponse
     {
         $membres = User::where('role', 'membre')
-            ->with(['tontine', 'tontineType'])
+            ->with(['tontine', 'tontineTypes'])
             ->paginate(15);
 
         $data = $membres->getCollection()->map(function (User $user) {
+            // Premier type de tontine du membre (many-to-many)
+            $premierType = $user->tontineTypes->first();
+
             return [
                 'nom_complet'           => $user->full_name,
                 'phone'                 => $user->phone,
                 'email'                 => $user->email,
                 'statut_paiement'       => $this->calculerStatutPaiement($user),
-                'type_tontine'          => $user->tontineType?->nom,
-                'montant_total_cotise'  => $this->calculerMontantTotalCotise($user),
+                'type_tontine'          => $premierType?->nom,
+                'montant_total_cotise'  => $this->calculerMontantTotalCotise($user, $premierType),
                 'ordre_passage'         => $user->ordre_passage,
             ];
         });
@@ -64,14 +67,14 @@ class AdminMembreController extends Controller
     /**
      * Calcule le montant total cotisé : TontineType.montant × périodes écoulées.
      */
-    private function calculerMontantTotalCotise(User $user): string
+    private function calculerMontantTotalCotise(User $user, $tontineType = null): string
     {
-        if (! $user->date_adhesion || ! $user->tontineType || ! $user->tontine) {
+        if (! $user->date_adhesion || ! $tontineType || ! $user->tontine) {
             return '0.00';
         }
 
         $periodes = $this->periodesEcoulees($user->date_adhesion, $user->tontine->frequence);
-        $montant  = (float) $user->tontineType->montant * $periodes;
+        $montant  = (float) $tontineType->montant * $periodes;
 
         return number_format($montant, 2, '.', '');
     }
