@@ -15,6 +15,16 @@
                     <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                         {{ __('Dashboard') }}
                     </x-nav-link>
+
+                    <x-nav-link :href="route('tontines.index')" :active="request()->routeIs('tontines.*')">
+                        🏦 {{ __('Tontines') }}
+                    </x-nav-link>
+
+                    @if (Auth::user()->isAdmin())
+                        <x-nav-link :href="route('tontines.create')" :active="request()->routeIs('tontines.create')">
+                            + {{ __('Nouvelle tontine') }}
+                        </x-nav-link>
+                    @endif
                 </div>
             </div>
 
@@ -70,6 +80,16 @@
             <x-responsive-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                 {{ __('Dashboard') }}
             </x-responsive-nav-link>
+
+            <x-responsive-nav-link :href="route('tontines.index')" :active="request()->routeIs('tontines.*')">
+                🏦 {{ __('Tontines') }}
+            </x-responsive-nav-link>
+
+            @if (Auth::user()->isAdmin())
+                <x-responsive-nav-link :href="route('tontines.create')" :active="request()->routeIs('tontines.create')">
+                    + {{ __('Nouvelle tontine') }}
+                </x-responsive-nav-link>
+            @endif
         </div>
 
         <!-- Responsive Settings Options -->
