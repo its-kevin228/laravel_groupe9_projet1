@@ -1,0 +1,68 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap');
+
+@font-face { 
+  font-family:'Gelion';
+  src:url('https://app.uizard.io/fonts/Gelion-Regular.woff?cache=2025-10-23-07-48-30') format('woff'),
+      url('https://app.uizard.io/fonts/Gelion-Regular.ttf?cache=2025-10-23-07-48-30') format('truetype');
+  font-weight:normal;
+  font-style:normal;
+} 
+
+@font-face { 
+  font-family:'Gelion';
+  src:url('https://app.uizard.io/fonts/Gelion-Bold.woff?cache=2025-10-23-07-48-30') format('woff'),
+      url('https://app.uizard.io/fonts/Gelion-Bold.ttf?cache=2025-10-23-07-48-30') format('truetype');
+  font-weight:bold;
+  font-style:normal;
+} 
+
+:root {
+  /* Background Colors from Tokens */
+  --color-dark-gray: #a8be90;
+  --color-light-gray: #d7e6c5;
+  --color-gainsboro: #d9d9d9;
+  --color-gainsboro-1: #e2e3df;
+  --color-white-smoke: #ededed;
+  --color-white-smoke-1: #f2f2f2;
+  --color-white-smoke-2: #f5f5f5;
+  --color-mint-cream: #fbfcf7;
+  --color-white: #ffffff;
+  --color-black: #030303;
+  --color-dim-gray: #636c59;
+
+  /* Typography Tokens */
+  --font-montserrat: 'Montserrat', sans-serif;
+  --font-gelion: 'Gelion', sans-serif;
+}
+
+body {
+  background-color: var(--color-white-smoke-1);
+  font-family: var(--font-montserrat);
+  color: var(--color-black);
+}
+
+.btn-primary {
+  background-color: var(--color-dark-gray);
+  color: white;
+  font-weight: 600;
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+  transition: all 0.2s;
+}
+
+.btn-primary:hover {
+  background-color: var(--color-dim-gray);
+}
+
+.card-tontine {
+  background-color: var(--color-white);
+  border: 1px solid var(--color-gainsboro-1);
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+  border-radius: 1rem;
+}
+
+.type-body-24 {
+  font-size: 24px;
+  font-weight: 700;
+  line-height: 1.17;
+}

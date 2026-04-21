@@ -25,10 +25,21 @@ class CycleController extends Controller
         // Calcul du prochain numéro de cycle
         $nextNumber = $tontine->cycles()->max('cycle_number') + 1;
 
+        // Calcul de la date de fin estimée selon la fréquence
+        $openedAt = now();
+        $daysToAdd = match($tontine->frequency) {
+            'hebdomadaire' => 7,
+            'mensuel'      => 30,
+            'bimestriel'   => 60,
+            'trimestriel'  => 90,
+            default        => 30
+        };
+
         $cycle = $tontine->cycles()->create([
             'cycle_number'        => $nextNumber,
             'beneficiary_user_id' => $validated['beneficiary_user_id'],
-            'opened_at'           => now(),
+            'opened_at'           => $openedAt,
+            'end_date'            => $openedAt->copy()->addDays($daysToAdd),
         ]);
 
         return redirect()

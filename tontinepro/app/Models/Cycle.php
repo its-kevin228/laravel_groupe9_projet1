@@ -22,6 +22,7 @@ class Cycle extends Model
         'beneficiary_user_id',
         'opened_at',
         'closed_at',
+        'end_date',
     ];
 
     /**
@@ -34,6 +35,7 @@ class Cycle extends Model
         return [
             'opened_at' => 'datetime',
             'closed_at' => 'datetime',
+            'end_date'  => 'datetime',
         ];
     }
 

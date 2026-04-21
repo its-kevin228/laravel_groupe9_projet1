@@ -1,23 +1,24 @@
 <x-app-layout>
-    <x-slot name="header">
-        <div class="flex items-center justify-between">
-            <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-                {{ __('Créer une Tontine') }}
-            </h2>
-            <a href="{{ route('tontines.index') }}" class="text-sm text-gray-600 hover:text-gray-900">
-                ← Retour à la liste
-            </a>
-        </div>
-    </x-slot>
+    <div class="py-12 bg-mint min-h-screen font-montserrat">
+        <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
 
-    <div class="py-12">
-        <div class="max-w-3xl mx-auto sm:px-6 lg:px-8">
+            {{-- Header personnalisé --}}
+            <div class="mb-10 flex items-center justify-between">
+                <div>
+                    <h1 class="text-3xl font-black text-sage-dim tracking-tight">Nouvelle Tontine</h1>
+                    <p class="text-gray-500 font-medium">Configurez votre nouveau groupe de cotisations.</p>
+                </div>
+                <a href="{{ route('tontines.index') }}" class="text-sm font-bold text-sage-dark hover:text-sage-dim flex items-center gap-2">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path></svg>
+                    Retour
+                </a>
+            </div>
 
             {{-- Message d'erreur global --}}
             @if ($errors->any())
-                <div class="mb-6 bg-red-50 border border-red-300 text-red-700 rounded-lg p-4">
-                    <p class="font-semibold mb-1">Veuillez corriger les erreurs suivantes :</p>
-                    <ul class="list-disc list-inside text-sm">
+                <div class="mb-8 bg-white border-l-4 border-red-500 text-red-700 rounded-r-2xl p-6 shadow-sm">
+                    <p class="font-black mb-2 uppercase text-xs tracking-widest">⚠️ Erreurs de validation</p>
+                    <ul class="list-disc list-inside text-sm font-medium">
                         @foreach ($errors->all() as $error)
                             <li>{{ $error }}</li>
                         @endforeach
@@ -25,19 +26,19 @@
                 </div>
             @endif
 
-            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
-                <div class="p-8">
-                    <form method="POST" action="{{ route('tontines.store') }}">
+            <div class="bg-white rounded-[2.5rem] shadow-sm border border-sage-light overflow-hidden">
+                <div class="p-10">
+                    <form method="POST" action="{{ route('tontines.store') }}" class="space-y-8">
                         @csrf
 
                         {{-- Nom de la tontine --}}
-                        <div class="mb-6">
-                            <x-input-label for="name" :value="__('Nom de la tontine')" />
-                            <x-text-input
+                        <div>
+                            <label for="name" class="block text-xs font-black uppercase tracking-widest text-sage-dim mb-2">Nom de la tontine</label>
+                            <input
                                 id="name"
                                 name="name"
                                 type="text"
-                                class="mt-1 block w-full"
+                                class="w-full bg-white-smoke-2 border-transparent focus:border-sage-dark focus:ring-0 rounded-2xl p-4 text-sage-dim font-bold placeholder-gray-300 transition-all"
                                 :value="old('name')"
                                 placeholder="Ex: Tontine des Amis 2026"
                                 required
@@ -46,84 +47,90 @@
                             <x-input-error :messages="$errors->get('name')" class="mt-2" />
                         </div>
 
-                        {{-- Montant par cycle --}}
-                        <div class="mb-6">
-                            <x-input-label for="amount_per_cycle" :value="__('Montant par cycle (FCFA)')" />
-                            <x-text-input
-                                id="amount_per_cycle"
-                                name="amount_per_cycle"
-                                type="number"
-                                step="1"
-                                min="1"
-                                class="mt-1 block w-full"
-                                :value="old('amount_per_cycle')"
-                                placeholder="Ex: 25000"
-                                required
-                            />
-                            <x-input-error :messages="$errors->get('amount_per_cycle')" class="mt-2" />
-                        </div>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                            {{-- Montant par cycle --}}
+                            <div>
+                                <label for="amount_per_cycle" class="block text-xs font-black uppercase tracking-widest text-sage-dim mb-2">Montant (FCFA)</label>
+                                <div class="relative">
+                                    <span class="absolute left-4 top-1/2 -translate-y-1/2 text-sage-dark font-bold">💰</span>
+                                    <input
+                                        id="amount_per_cycle"
+                                        name="amount_per_cycle"
+                                        type="number"
+                                        class="w-full bg-white-smoke-2 border-transparent focus:border-sage-dark focus:ring-0 rounded-2xl p-4 pl-12 text-sage-dim font-bold placeholder-gray-300 transition-all"
+                                        :value="old('amount_per_cycle')"
+                                        placeholder="Ex: 25000"
+                                        required
+                                    />
+                                </div>
+                                <x-input-error :messages="$errors->get('amount_per_cycle')" class="mt-2" />
+                            </div>
 
-                        {{-- Fréquence --}}
-                        <div class="mb-6">
-                            <x-input-label for="frequency" :value="__('Fréquence')" />
-                            <select
-                                id="frequency"
-                                name="frequency"
-                                class="mt-1 block w-full border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm"
-                                required
-                            >
-                                <option value="">-- Choisir une fréquence --</option>
-                                <option value="hebdomadaire" {{ old('frequency') === 'hebdomadaire' ? 'selected' : '' }}>Hebdomadaire</option>
-                                <option value="mensuel" {{ old('frequency') === 'mensuel' ? 'selected' : '' }}>Mensuel</option>
-                                <option value="bimestriel" {{ old('frequency') === 'bimestriel' ? 'selected' : '' }}>Bimestriel</option>
-                                <option value="trimestriel" {{ old('frequency') === 'trimestriel' ? 'selected' : '' }}>Trimestriel</option>
-                            </select>
-                            <x-input-error :messages="$errors->get('frequency')" class="mt-2" />
+                            {{-- Fréquence --}}
+                            <div>
+                                <label for="frequency" class="block text-xs font-black uppercase tracking-widest text-sage-dim mb-2">Fréquence</label>
+                                <select
+                                    id="frequency"
+                                    name="frequency"
+                                    class="w-full bg-white-smoke-2 border-transparent focus:border-sage-dark focus:ring-0 rounded-2xl p-4 text-sage-dim font-bold transition-all appearance-none"
+                                    required
+                                >
+                                    <option value="">Choisir...</option>
+                                    <option value="hebdomadaire" {{ old('frequency') === 'hebdomadaire' ? 'selected' : '' }}>Hebdomadaire</option>
+                                    <option value="mensuel" {{ old('frequency') === 'mensuel' ? 'selected' : '' }}>Mensuel</option>
+                                    <option value="bimestriel" {{ old('frequency') === 'bimestriel' ? 'selected' : '' }}>Bimestriel</option>
+                                    <option value="trimestriel" {{ old('frequency') === 'trimestriel' ? 'selected' : '' }}>Trimestriel</option>
+                                </select>
+                                <x-input-error :messages="$errors->get('frequency')" class="mt-2" />
+                            </div>
                         </div>
 
                         {{-- Sélection des membres --}}
-                        <div class="mb-8">
-                            <x-input-label :value="__('Membres participants')" />
-                            <p class="text-sm text-gray-500 mt-1 mb-3">
-                                Cochez les membres à ajouter. L'ordre de sélection définit l'ordre de bénéfice.
+                        <div>
+                            <label class="block text-xs font-black uppercase tracking-widest text-sage-dim mb-2">Membres participants</label>
+                            <p class="text-[10px] text-gray-400 font-bold uppercase mb-4">
+                                L'ordre de sélection définit l'ordre de bénéfice (qui passe en premier).
                             </p>
 
                             @if ($members->isEmpty())
-                                <p class="text-sm text-amber-600 bg-amber-50 border border-amber-200 rounded-md p-3">
-                                    Aucun membre disponible. Veuillez d'abord créer des utilisateurs avec le rôle "member".
-                                </p>
+                                <div class="bg-amber-50 border border-amber-100 rounded-2xl p-6 text-center text-amber-700 text-sm font-medium">
+                                    Aucun membre disponible. Créez des utilisateurs avec le rôle "member".
+                                </div>
                             @else
-                                <div class="border border-gray-200 rounded-lg divide-y divide-gray-100 max-h-64 overflow-y-auto">
+                                <div class="bg-white-smoke-2 rounded-2xl p-2 max-h-64 overflow-y-auto space-y-1">
                                     @foreach ($members as $index => $member)
-                                        <label class="flex items-center gap-3 px-4 py-3 hover:bg-gray-50 cursor-pointer">
+                                        <label class="flex items-center gap-4 p-3 hover:bg-white rounded-xl cursor-pointer transition-all group">
                                             <input
                                                 type="checkbox"
                                                 name="members[]"
                                                 value="{{ $member->id }}"
-                                                class="rounded border-gray-300 text-indigo-600 shadow-sm focus:ring-indigo-500"
+                                                class="w-6 h-6 rounded-lg border-transparent bg-gray-200 text-sage-dark focus:ring-sage-dark shadow-sm"
                                                 {{ in_array($member->id, old('members', [])) ? 'checked' : '' }}
                                             >
-                                            <div>
-                                                <span class="font-medium text-gray-800">{{ $member->name }}</span>
-                                                <span class="ml-2 text-sm text-gray-400">{{ $member->email }}</span>
+                                            <div class="flex items-center gap-3">
+                                                <div class="w-8 h-8 bg-sage-light rounded-full flex items-center justify-center text-[10px] font-black text-sage-dim group-hover:scale-110 transition-transform">
+                                                    {{ substr($member->name, 0, 1) }}
+                                                </div>
+                                                <div>
+                                                    <p class="text-sm font-bold text-sage-dim">{{ $member->name }}</p>
+                                                    <p class="text-[10px] text-gray-400 font-medium">{{ $member->email }}</p>
+                                                </div>
                                             </div>
                                         </label>
                                     @endforeach
                                 </div>
                                 <x-input-error :messages="$errors->get('members')" class="mt-2" />
-                                <x-input-error :messages="$errors->get('members.*')" class="mt-2" />
                             @endif
                         </div>
 
                         {{-- Boutons --}}
-                        <div class="flex items-center justify-end gap-4">
-                            <a href="{{ route('tontines.index') }}"
-                               class="inline-flex items-center px-4 py-2 bg-white border border-gray-300 rounded-md font-semibold text-xs text-gray-700 uppercase tracking-widest shadow-sm hover:bg-gray-50 transition ease-in-out duration-150">
+                        <div class="flex items-center justify-end gap-4 pt-6 border-t border-gray-50">
+                            <a href="{{ route('tontines.index') }}" class="text-sm font-bold text-gray-400 hover:text-sage-dim transition-colors">
                                 Annuler
                             </a>
-                            <x-primary-button>
-                                {{ __('Créer la tontine') }}
-                            </x-primary-button>
+                            <button type="submit" class="bg-sage-dark hover:bg-sage-dim text-white font-black px-10 py-4 rounded-2xl transition shadow-lg shadow-sage-light">
+                                Créer le groupe →
+                            </button>
                         </div>
                     </form>
                 </div>
