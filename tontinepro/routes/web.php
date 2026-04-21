@@ -23,6 +23,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
     // Tontines (lecture pour tous, création/gestion réservée aux admins via TontinePolicy)
     Route::resource('tontines', TontineController::class);
+    Route::get('tontines/{tontine}/export-pdf', [TontineController::class, 'exportPdf'])->name('tontines.export-pdf');
 
     // Cycles imbriqués dans les tontines
     Route::prefix('tontines/{tontine}/cycles')->name('tontines.cycles.')->group(function () {

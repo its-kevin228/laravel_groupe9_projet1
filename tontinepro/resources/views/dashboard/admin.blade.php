@@ -9,7 +9,7 @@
                     <p class="text-gray-500 font-medium">Voici l'état global de vos tontines aujourd'hui.</p>
                 </div>
                 <div class="flex gap-2">
-                    <a href="{{ route('tontines.create') }}" class="bg-sage-dark hover:bg-sage-dim text-white font-bold py-3 px-6 rounded-tix transition shadow-lg">
+                    <a href="{{ route('tontines.create') }}" class="bg-sage-dark hover:opacity-hover text-white font-bold py-3 px-6 rounded-tix transition shadow-lg">
                         + Nouvelle Tontine
                     </a>
                 </div>

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Tontine;
 use App\Models\User;
+use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
@@ -161,5 +162,23 @@ class TontineController extends Controller
         return redirect()
             ->route('tontines.index')
             ->with('success', "La tontine a été supprimée.");
+    }
+
+    /**
+     * Exporte les données de la tontine en PDF (membres, paiements, historique).
+     */
+    public function exportPdf(Tontine $tontine)
+    {
+        $this->authorize('view', $tontine);
+
+        // Charger les relations nécessaires
+        $tontine->load(['users', 'activeCycle.payments.user', 'cycles.payments']);
+
+        $pdf = Pdf::loadView('tontines.pdf', compact('tontine'))
+                  ->setPaper('a4', 'portrait');
+
+        $fileName = 'Rapport_' . str_replace(' ', '_', $tontine->name) . '_' . now()->format('d-m-Y') . '.pdf';
+        
+        return $pdf->download($fileName);
     }
 }

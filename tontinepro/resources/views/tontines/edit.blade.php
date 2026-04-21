@@ -113,7 +113,7 @@
                             <a href="{{ route('tontines.show', $tontine) }}" class="text-sm font-bold text-gray-400 hover:text-sage-dim transition-colors">
                                 Annuler
                             </a>
-                            <button type="submit" class="bg-sage-dark hover:bg-sage-dim text-white font-black px-10 py-4 rounded-2xl transition shadow-lg shadow-sage-light">
+                            <button type="submit" class="bg-sage-dark hover:opacity-hover text-white font-black px-10 py-4 rounded-2xl transition shadow-lg shadow-sage-light">
                                 Enregistrer →
                             </button>
                         </div>

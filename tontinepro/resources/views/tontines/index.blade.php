@@ -38,7 +38,7 @@
                     <h3 class="text-xl font-bold text-sage-dim mb-2">Aucune tontine active</h3>
                     <p class="text-gray-400 mb-8 max-w-sm mx-auto">Prêt à commencer l'aventure ? Créez votre première tontine.</p>
                     @if (auth()->user()->isAdmin())
-                        <a href="{{ route('tontines.create') }}" class="inline-flex items-center gap-2 bg-sage-dark hover:bg-sage-dim text-white font-bold py-3 px-8 rounded-lg transition-colors">
+                        <a href="{{ route('tontines.create') }}" class="inline-flex items-center gap-2 bg-sage-dark hover:opacity-hover text-white font-bold py-3 px-8 rounded-lg transition-colors">
                             <i data-lucide="sparkles" class="w-5 h-5"></i>
                             <span>Lancer ma première tontine</span>
                         </a>
@@ -126,7 +126,7 @@
                                         </div>
                                     </td>
                                     <td class="px-6 py-4 text-right">
-                                        <a href="{{ route('tontines.show', $tontine) }}" class="inline-flex items-center gap-2 text-[12px] font-bold text-sage-dark hover:text-sage-dim transition-colors">
+                                        <a href="{{ route('tontines.show', $tontine) }}" class="inline-flex items-center gap-2 text-[12px] font-bold text-sage-dark hover:opacity-hover transition-colors">
                                             <span>VOIR PLUS</span>
                                             <i data-lucide="arrow-right" class="w-4 h-4"></i>
                                         </a>

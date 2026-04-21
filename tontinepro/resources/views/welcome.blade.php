@@ -30,16 +30,16 @@
 
         <div class="flex flex-col sm:flex-row items-center gap-6 mb-24">
             @auth
-                <a href="{{ url('/dashboard') }}" class="group bg-sage-dark hover:bg-sage-dim text-white font-black px-12 py-5 rounded-full transition-all duration-300 shadow-2xl flex items-center gap-3">
+                <a href="{{ url('/dashboard') }}" class="group bg-sage-dark hover:opacity-hover text-white font-black px-12 py-5 rounded-full transition-all duration-300 shadow-2xl flex items-center gap-3">
                     <span>Accéder à mon espace</span>
                     <i data-lucide="arrow-right" class="w-6 h-6 group-hover:translate-x-1 transition-transform"></i>
                 </a>
             @else
-                <a href="{{ route('login') }}" class="group bg-sage-dark hover:bg-sage-dim text-white font-black px-12 py-5 rounded-full transition-all duration-300 shadow-2xl flex items-center gap-3">
+                <a href="{{ route('login') }}" class="group bg-sage-dark hover:opacity-hover text-white font-black px-12 py-5 rounded-full transition-all duration-300 shadow-2xl flex items-center gap-3">
                     <span>Se connecter</span>
                     <i data-lucide="log-in" class="w-6 h-6"></i>
                 </a>
-                <a href="{{ route('register') }}" class="bg-white border-2 border-sage-light text-sage-dim font-black px-12 py-5 rounded-full hover:bg-sage-light transition-all duration-300 flex items-center gap-3">
+                <a href="{{ route('register') }}" class="bg-white border-2 border-sage-light text-sage-dim font-black px-12 py-5 rounded-full hover:opacity-hover transition-all duration-300 flex items-center gap-3">
                     <span>Créer un compte</span>
                     <i data-lucide="user-plus" class="w-6 h-6"></i>
                 </a>

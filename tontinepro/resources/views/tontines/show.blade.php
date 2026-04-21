@@ -48,7 +48,7 @@
                             @if ($activeCycle && !$activeCycle->closed_at)
                                 <form action="{{ route('tontines.cycles.close', [$tontine, $activeCycle]) }}" method="POST">
                                     @csrf @method('PATCH')
-                                    <button type="submit" class="bg-sage-dark hover:bg-sage-dim text-white px-6 py-3 rounded-tix font-bold text-xs uppercase tracking-widest transition shadow-sm flex items-center gap-2">
+                                    <button type="submit" class="bg-sage-dark hover:opacity-hover text-white px-6 py-3 rounded-tix font-bold text-xs uppercase tracking-widest transition shadow-sm flex items-center gap-2">
                                         <i data-lucide="lock" class="w-4 h-4"></i>
                                         Clôturer Cycle #{{ $activeCycle->cycle_number }}
                                     </button>
@@ -62,7 +62,7 @@
                                     <form action="{{ route('tontines.cycles.store', $tontine) }}" method="POST">
                                         @csrf
                                         <input type="hidden" name="beneficiary_user_id" value="{{ $nextBeneficiary->id }}">
-                                        <button type="submit" class="bg-sage-dark hover:opacity-90 text-white px-6 py-3 rounded-tix font-bold text-xs uppercase tracking-widest transition shadow-sm flex items-center gap-2">
+                                        <button type="submit" class="bg-sage-dark hover:opacity-hover text-white px-6 py-3 rounded-tix font-bold text-xs uppercase tracking-widest transition shadow-sm flex items-center gap-2">
                                             <i data-lucide="play" class="w-4 h-4"></i>
                                             Ouvrir Cycle #{{ ($activeCycle?->cycle_number ?? 0) + 1 }}
                                         </button>
@@ -70,9 +70,14 @@
                                 @endif
                             @endif
 
-                            <a href="{{ route('tontines.edit', $tontine) }}" class="bg-white border border-sage-dark text-sage-dark hover:bg-sage-light px-6 py-3 rounded-tix font-bold text-xs uppercase tracking-widest transition flex items-center gap-2">
+                            <a href="{{ route('tontines.edit', $tontine) }}" class="bg-white border border-sage-dark text-sage-dark hover:opacity-hover px-6 py-3 rounded-tix font-bold text-xs uppercase tracking-widest transition flex items-center gap-2">
                                 <i data-lucide="edit-3" class="w-4 h-4"></i>
                                 Modifier
+                            </a>
+                            
+                            <a href="{{ route('tontines.export-pdf', $tontine) }}" class="bg-white border border-red-500 text-red-500 hover:opacity-hover px-6 py-3 rounded-tix font-bold text-xs uppercase tracking-widest transition flex items-center gap-2">
+                                <i data-lucide="file-text" class="w-4 h-4"></i>
+                                Rapport PDF
                             </a>
                         </div>
                     @endif
@@ -95,7 +100,7 @@
                                     <i data-lucide="user" class="w-10 h-10"></i>
                                 </div>
                                 <div>
-                                    <p class="text-4xl font-black text-black mb-2 tracking-tight">{{ $activeCycle->beneficiary->name }}</p>
+                                    <p class="text-2xl font-black text-black mb-2 tracking-tight">{{ $activeCycle->beneficiary->name }}</p>
                                     <p class="text-gray-500 font-medium">Reçoit la cagnotte de <span class="text-sage-dark font-black">{{ number_format($tontine->amount_per_cycle * $tontine->members->count(), 0, ',', ' ') }} FCFA</span></p>
                                 </div>
                             </div>

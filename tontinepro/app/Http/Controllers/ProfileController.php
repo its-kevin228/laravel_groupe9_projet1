@@ -48,6 +48,11 @@ class ProfileController extends Controller
 
         $user = $request->user();
 
+        // Empêcher l'administrateur de supprimer son propre compte (Sécurité système)
+        if ($user->isAdmin()) {
+            return back()->withErrors(['userDeletion' => 'Un administrateur ne peut pas supprimer son propre compte pour garantir la stabilité du système.']);
+        }
+
         Auth::logout();
 
         $user->delete();

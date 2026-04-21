@@ -35,6 +35,9 @@ export default {
             },
             borderRadius: {
                 'tix': '5px',
+            },
+            opacity: {
+                'hover': '0.85',
             }
         },
     },
