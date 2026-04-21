@@ -23,6 +23,11 @@
                     </x-nav-link>
 
                     @if (Auth::user()->isAdmin())
+                        <x-nav-link :href="route('users.index')" :active="request()->routeIs('users.*')" class="text-sage-dim font-bold">
+                            <i data-lucide="users" class="w-4 h-4 mr-2"></i>
+                            {{ __('Membres') }}
+                        </x-nav-link>
+
                         <x-nav-link :href="route('tontines.create')" :active="request()->routeIs('tontines.create')" class="text-sage-dark font-black">
                             <i data-lucide="plus-circle" class="w-4 h-4 mr-1"></i>
                             {{ __('Créer') }}

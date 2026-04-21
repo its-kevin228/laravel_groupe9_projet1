@@ -26,21 +26,15 @@
 
         <!-- Remember Me -->
         <div class="block mt-4">
-            <label for="remember_me" class="inline-flex items-center">
-                <input id="remember_me" type="checkbox" class="rounded border-gray-300 text-indigo-600 shadow-sm focus:ring-indigo-500" name="remember">
-                <span class="ms-2 text-sm text-gray-600">{{ __('Remember me') }}</span>
+            <label for="remember_me" class="inline-flex items-center cursor-pointer group">
+                <input id="remember_me" type="checkbox" class="rounded-[3px] border-tixtogo-border text-sage-dark shadow-sm focus:ring-sage-light" name="remember">
+                <span class="ms-2 text-[11px] font-black uppercase tracking-widest text-gray-400 group-hover:text-sage-dark transition-colors">{{ __('Resté connecté') }}</span>
             </label>
         </div>
 
-        <div class="flex items-center justify-end mt-4">
-            @if (Route::has('password.request'))
-                <a class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" href="{{ route('password.request') }}">
-                    {{ __('Forgot your password?') }}
-                </a>
-            @endif
-
-            <x-primary-button class="ms-3">
-                {{ __('Log in') }}
+        <div class="flex items-center justify-end mt-8">
+            <x-primary-button class="w-full justify-center bg-sage-dark hover:opacity-hover text-white font-black text-xs uppercase tracking-[0.2em] py-4 rounded-tix transition-all shadow-lg shadow-sage-light/20">
+                {{ __('Se connecter') }}
             </x-primary-button>
         </div>
     </form>

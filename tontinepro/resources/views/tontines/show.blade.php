@@ -146,7 +146,9 @@
                                     <th class="px-8 py-5">Membre</th>
                                     <th class="px-4 py-5">Statut</th>
                                     <th class="px-4 py-5">Montant</th>
-                                    <th class="px-8 py-5 text-right">Action</th>
+                                    @if(Auth::user()->isAdmin())
+                                        <th class="px-8 py-5 text-right">Action</th>
+                                    @endif
                                 </tr>
                             </thead>
                             <tbody class="divide-y divide-tixtogo-border">
@@ -180,8 +182,8 @@
                                         <td class="px-4 py-5 font-black text-black">
                                             {{ number_format($tontine->amount_per_cycle, 0, ',', ' ') }} <span class="text-[10px] text-tixtogo-muted">FCFA</span>
                                         </td>
-                                        <td class="px-8 py-5 text-right">
-                                            @if (Auth::user()->isAdmin())
+                                        @if(Auth::user()->isAdmin())
+                                            <td class="px-8 py-5 text-right">
                                                 @if (!$payment || $payment->status !== 'payé')
                                                     <form method="POST" action="{{ route('tontines.cycles.payments.store', [$tontine, $activeCycle]) }}">
                                                         @csrf
@@ -193,8 +195,8 @@
                                                 @else
                                                     <span class="text-sage-dark text-lg">✨</span>
                                                 @endif
-                                            @endif
-                                        </td>
+                                            </td>
+                                        @endif
                                     </tr>
                                 @endforeach
                             </tbody>
